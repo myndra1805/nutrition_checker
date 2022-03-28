@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Application",
-      initialRoute: Routes.LAYOUT,
+      initialRoute: Routes.SPLASH,
       getPages: AppPages.routes,
       theme: ThemeData(
         appBarTheme: AppBarTheme(

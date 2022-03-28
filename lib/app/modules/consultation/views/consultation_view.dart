@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:nutrition_checker/app/routes/app_pages.dart';
 import 'package:nutrition_checker/app/widgets/consultation_card.dart';
 import 'package:nutrition_checker/app/widgets/extentions.dart';
+import 'package:nutrition_checker/app/widgets/header.dart';
 import '../controllers/consultation_controller.dart';
 
 class ConsultationView extends GetView<ConsultationController> {
@@ -13,30 +15,42 @@ class ConsultationView extends GetView<ConsultationController> {
           child: Container(
         child: ListView(
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.only(top: 10),
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Your Consultation',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(color: Color(0xff00345b), fontSize: 24, fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-            ),
+            Header(
+                status: false,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Consultations',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "Konsultasi dengan para ahli dibidang nya untuk menangani masalah anda",
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                )),
             _category(context),
             _consultations(context)
           ],
         ),
       )),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed(Routes.DOCTORS);
+        },
         backgroundColor: Color(0xff00345b),
-        child: Icon(Icons.add, color: Colors.white,),
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }
@@ -62,9 +76,12 @@ class ConsultationView extends GetView<ConsultationController> {
                           textAlign: TextAlign.center,
                           style: TextStyle(fontWeight: FontWeight.bold, color: controller.categoryActive.value == category ? Colors.white : Colors.black38),
                         ),
-                      ).ripple(() {
-                        controller.categoryActive.value = category;
-                      }),
+                      ).ripple(
+                        () {
+                          controller.categoryActive.value = category;
+                        },
+                        borderRadius: BorderRadius.circular(50),
+                      ),
                     ))
                 .toList()),
       );

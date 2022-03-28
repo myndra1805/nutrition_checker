@@ -11,7 +11,16 @@ abstract class Routes {
   static const LAYOUT = _Paths.LAYOUT;
   static const CONSULTATION = _Paths.CONSULTATION;
   static const ARTICLE = _Paths.ARTICLE;
-  static const ANALISIS_GIZI = _Paths.ANALISIS_GIZI;
+  static const PRODUCT = _Paths.PRODUCT;
+  static const CART = _Paths.CART;
+  static const DOCTORS = _Paths.DOCTORS;
+  static const DOCTOR = _Paths.DOCTOR;
+  static const CREATE_APPOINTMENT = _Paths.CREATE_APPOINTMENT;
+  static const SPLASH = _Paths.SPLASH;
+  static const LOGIN = _Paths.LOGIN;
+  static const REGISTER = _Paths.REGISTER;
+  static const NUTRITION_RECORD = _Paths.NUTRITION_RECORD;
+  static const ADD_FAMILY = _Paths.ADD_FAMILY;
 }
 
 abstract class _Paths {
@@ -24,5 +33,14 @@ abstract class _Paths {
   static const LAYOUT = '/layout';
   static const CONSULTATION = '/consultation';
   static const ARTICLE = '/article';
-  static const ANALISIS_GIZI = '/analisis-gizi';
+  static const PRODUCT = '/product';
+  static const CART = '/cart';
+  static const DOCTORS = '/doctors';
+  static const DOCTOR = '/doctor';
+  static const CREATE_APPOINTMENT = '/create-appointment';
+  static const SPLASH = '/splash';
+  static const LOGIN = '/login';
+  static const REGISTER = '/register';
+  static const NUTRITION_RECORD = '/nutrition-record';
+  static const ADD_FAMILY = '/add-family';
 }

@@ -30,10 +30,24 @@ class ConsultationCard extends StatelessWidget {
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
                     clipBehavior: Clip.hardEdge,
                   ),
-                  Text(
-                    consultation.name,
-                    style: TextStyle(color: Colors.black38),
-                  ),
+                  Container(
+                    child: Column(children: [
+                      Text(
+                        consultation.name,
+                        style: TextStyle(color: Colors.black38),
+                      ),
+                      SizedBox(height: 5,),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 2, horizontal: 4),
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 1, color: Color(0xff00345b)),
+                          borderRadius: BorderRadius.circular(50),
+                          color: Color(0xff00345b)
+                        ),
+                        child: Text('Upcoming', style: TextStyle(fontSize: 10, color: Colors.white),)
+                      )//Chi
+                    ]),
+                  )
                 ],
               ),
               IconButton(
@@ -46,7 +60,7 @@ class ConsultationCard extends StatelessWidget {
             ],
           ),
           Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Color.fromARGB(31, 207, 206, 206)),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Color(0xff00345b)),
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             margin: EdgeInsets.symmetric(vertical: 20),
             child: Row(
@@ -59,7 +73,7 @@ class ConsultationCard extends StatelessWidget {
                         flex: 1,
                         child: Icon(
                           Icons.date_range,
-                          color: Colors.black38,
+                          color: Colors.white,
                         ),
                       ),
                       Expanded(
@@ -68,7 +82,7 @@ class ConsultationCard extends StatelessWidget {
                             consultation.date,
                             style: TextStyle(
                               fontSize: 13,
-                              color: Colors.black38,
+                              color: Colors.white,
                             ),
                           ))
                     ],
@@ -81,13 +95,13 @@ class ConsultationCard extends StatelessWidget {
                         flex: 1,
                         child: Icon(
                           Icons.access_time_sharp,
-                          color: Colors.black38,
+                          color: Colors.white,
                         ),
                       ),
                       Expanded(
                         child: Text(
                           consultation.time,
-                          style: TextStyle(fontSize: 13, color: Colors.black38),
+                          style: TextStyle(fontSize: 13, color: Colors.white),
                         ),
                         flex: 4,
                       )

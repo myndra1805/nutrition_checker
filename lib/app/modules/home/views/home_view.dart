@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -13,9 +15,10 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 10),
         margin: EdgeInsets.only(top: 20),
         child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 20),
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,7 +66,7 @@ class HomeView extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Schedule Upcoming',
+                          'Your Family',
                           style: TextStyle(color: Colors.black38),
                         ),
                         TextButton(
@@ -72,37 +75,16 @@ class HomeView extends GetView<HomeController> {
                             'See All',
                             style: TextStyle(color: Color(0xff00a7e6)),
                           ),
-                        )
-                      ],
-                    )),
-                    ConsultationCard(consultation: Consultation(id: 1, name: 'Dr. Jhon', image: 'https://cdn.vuetifyjs.com/images/john.png', date: '12 Aug 2021', time: '11.00 - 12.00 WIB', link: ''), onSelected: (item) {}),
-                  ],
-                )),
-            Container(
-                margin: EdgeInsets.only(top: 30),
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                        // padding: EdgeInsets.only(left: 20, right: 20),
-                        child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'New Articles',
-                          style: TextStyle(color: Colors.black38),
                         ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'See All',
-                            style: TextStyle(color: Color(0xff00a7e6)),
-                          ),
-                        )
                       ],
                     )),
-                    ...controller.articles.map((article) => ArticleCard(article: article, onSelected: (item) {})).toList()
+                    Column(
+                      children: <Widget>[
+                        ...controller.families.map((family) {
+                          return _item(family);
+                        }).toList()
+                      ],
+                    ),
                   ],
                 )),
           ],
@@ -137,6 +119,84 @@ class HomeView extends GetView<HomeController> {
             ),
           );
         }).toList(),
+      ),
+    );
+  }
+
+  Widget _item(family) {
+    int random = Random().nextInt(2);
+    return Container(
+      padding: EdgeInsets.all(20),
+      margin: EdgeInsets.only(top: 10, bottom: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 2, offset: Offset(0, 4), spreadRadius: 4)],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+              flex: 2,
+              child: Row(
+                children: [
+                  Container(
+                    height: 70,
+                    margin: EdgeInsets.only(right: 10),
+                    child: Image.asset(
+                      family.status == 'kid'
+                          ? family.gender == 'l'
+                              ? 'assets/boy.png'
+                              : 'assets/girl.png'
+                          : 'assets/pregnant.png',
+                      fit: BoxFit.cover,
+                    ),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                    clipBehavior: Clip.hardEdge,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          family.name,
+                          style: TextStyle(color: Color(0xff00345b), fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 2,
+                        ),
+                        Text(
+                          "${family.age}\n${family.gender == 'l' ? 'Boy' : 'Girl'}\n${family.status == 'kid' ? 'Children' : 'pregnant mother'}",
+                          style: TextStyle(color: Colors.black38, height: 1.2),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              )),
+          Expanded(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      random == 1 ? 'assets/smile.png' : 'assets/smile1.png',
+                      height: 50,
+                    ),
+                    Text(
+                      random == 1 ? 'GOOD' : 'VERY GOOD',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Color(0xff00345b)),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ))
+        ],
       ),
     );
   }

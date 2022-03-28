@@ -13,46 +13,37 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 4,
-            color: Colors.black12,
-            spreadRadius: 1
-          )
-        ]
-      ),
-      child: Column(
-        children: <Widget>[
-          Image.network(
-            product.image,
-            height: 60,
-          ),
-          Container(
-            margin: EdgeInsets.only(bottom: 10, top: 10),
-            width: MediaQuery.of(context).size.width,
-            child: Column(mainAxisAlignment: MainAxisAlignment.end, crossAxisAlignment: CrossAxisAlignment.start, children: [
-              TitleText(
-                text: product.name,
-                fontSize: 14,
-              ),
-              TitleText(
-                text: product.category,
-                fontSize: 12,
-                color: Color(0xff00a7e6),
-              ),
-            ]),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            // decoration: BoxDecoration(border: Border.all(width: 2, color: Colors.red)),
-            // child: TitleText(
-            //   text: product.price.toString(),
-            //   fontSize: 18,
-            // ),
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20), boxShadow: [BoxShadow(blurRadius: 4, color: Colors.black12, spreadRadius: 1)]),
+      child: Stack(children: [
+        Column(
+          children: <Widget>[
+            Image.network(
+              product.image,
+              width: MediaQuery.of(context).size.width,
+              fit: BoxFit.cover,
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 5, top: 10),
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Column(mainAxisAlignment: MainAxisAlignment.end, crossAxisAlignment: CrossAxisAlignment.start, children: [
+                TitleText(
+                  text: product.category,
+                  fontSize: 12,
+                  color: Color(0xff00a7e6),
+                ),
+                TitleText(
+                  text: product.name,
+                  fontSize: 14,
+                ),
+              ]),
+            ),
+          ],
+        ),
+        Positioned(
+            right: 10,
+            bottom: 10,
             child: RichText(
               text: TextSpan(
                 style: TextStyle(color: Color(0xff00345b), fontSize: 16),
@@ -69,10 +60,10 @@ class ProductCard extends StatelessWidget {
                   TextSpan(text: product.price.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                 ],
               ),
-            ),
-          )
-        ],
-      ),
-    );
+            ))
+      ]),
+    ).ripple((){
+      onSelected(product);
+    }, borderRadius: BorderRadius.circular(20));
   }
 }

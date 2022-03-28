@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nutrition_checker/app/widgets/article_cart.dart';
 import 'package:nutrition_checker/app/widgets/extentions.dart';
+import 'package:nutrition_checker/app/widgets/header.dart';
 import '../controllers/articles_controller.dart';
 import 'package:nutrition_checker/app/routes/app_pages.dart';
 
@@ -16,19 +17,26 @@ class ArticlesView extends GetView<ArticlesController> {
         height: MediaQuery.of(context).size.height,
         child: Column(
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.only(top: 10),
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text('Our Articles', textAlign: TextAlign.left,style: TextStyle(
-                  color: Color(0xff00345b),
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold
-                ),)],
-              ),
-            ),
+            Header(
+              status: false,
+                child: Column(
+              children: [
+                SizedBox(height: 10,),
+                Text(
+                  'Our Articles',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "Get the latest information about stunting to increase your knowledge",
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                )
+              ],
+            )),
             _search(context),
             _categoryWidget(context),
             _articles(context)
